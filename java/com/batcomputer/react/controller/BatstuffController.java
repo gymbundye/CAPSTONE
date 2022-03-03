@@ -51,13 +51,13 @@ public class BatstuffController {
 	
 	
 	@GetMapping("/batstuff/{type}")
-	public ResponseEntity<BatStuff> getBatstuffByType(@PathVariable String type)
+	public ResponseEntity<BatStuff> getBatstuffByType(@PathVariable String name)
 	{
-		BatStuff  b= batcomputerRepo.findById(type).orElseThrow(() ->  new ResourceNotFoundException("Holy missing Data Batman!"));
+		BatStuff  b= batcomputerRepo.findById(name).orElseThrow(() ->  new ResourceNotFoundException("Holy missing Data Batman!"));
 		return ResponseEntity.ok(b);                 
 	}
 	
-	@GetMapping("/batstuff/{name}")
+	@GetMapping("/updatebatstuff/{name}")
 	public List<BatStuff> getBatStuffByName(@PathVariable String name)
 	{
 	
@@ -79,6 +79,9 @@ public class BatstuffController {
 		BatStuff oldBatStuff= batcomputerRepo.findOneByType(type);
 	    oldBatStuff.setName(newBatStuff.getName());
 	    oldBatStuff.setType(newBatStuff.getType());
+	    oldBatStuff.setAbout(newBatStuff.getAbout());
+	    oldBatStuff.setFirstapp(newBatStuff.getFirstapp());
+	    oldBatStuff.setImage(newBatStuff.getImage());
 	    BatStuff updatedBatstuff=batcomputerRepo.save(oldBatStuff);
 	    return ResponseEntity.ok(updatedBatstuff);
 	}
