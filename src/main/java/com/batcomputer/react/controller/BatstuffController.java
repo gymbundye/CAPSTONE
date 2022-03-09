@@ -5,6 +5,8 @@ package com.batcomputer.react.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,7 +53,7 @@ public class BatstuffController {
 	
 	
 	@GetMapping("/batstuff/{type}")
-	public ResponseEntity<BatStuff> getBatstuffByType(@PathVariable String type)
+	public ResponseEntity<BatStuff> getBatstuffById(@PathVariable String type)
 	{
 		BatStuff  b= batcomputerRepo.findById(type).orElseThrow(() ->  new ResourceNotFoundException("Holy missing Data Batman!"));
 		return ResponseEntity.ok(b);                 
@@ -62,8 +64,8 @@ public class BatstuffController {
 	{
 	
 		
-		List <BatStuff> students=batcomputerRepo.findByName(name);
-		if(students.isEmpty())
+		List <BatStuff> batstuff=batcomputerRepo.findByName(name);
+		if(batstuff.isEmpty())
 		{
 			System.out.println(new ResourceNotFoundException("We havent fought"+ name +" yet Batman!"));
 		}
@@ -73,25 +75,32 @@ public class BatstuffController {
 	
 	
 	
-	@PutMapping("/batstuff/{type}")
-	public ResponseEntity<BatStuff> updateBatStuff(@PathVariable String type, @RequestBody BatStuff newBatStuff)
+	@PutMapping("/updatebatstuff/{name}")
+	public ResponseEntity<BatStuff> updateBatStuff(@PathVariable String name, @RequestBody BatStuff newBatStuff)
 	{
-		BatStuff oldBatStuff= batcomputerRepo.findOneByType(type);
+		BatStuff oldBatStuff= batcomputerRepo.findOneByType(name);
 	    oldBatStuff.setName(newBatStuff.getName());
 	    oldBatStuff.setType(newBatStuff.getType());
+	    oldBatStuff.setAbout(newBatStuff.getAbout());
+	    oldBatStuff.setFirstapp(newBatStuff.getFirstapp());
+	    oldBatStuff.setImage(newBatStuff.getImage());
+	    oldBatStuff.setId(newBatStuff.getId());
 	    BatStuff updatedBatstuff=batcomputerRepo.save(oldBatStuff);
 	    return ResponseEntity.ok(updatedBatstuff);
 	}
 	
 
 	
-	@DeleteMapping("/delete/{type}")
-	public String deleteBatstuff(@PathVariable String type)
+	@DeleteMapping("/delete/{name}")
+	@Transactional
+	public String deleteBatstuff(@PathVariable String name)
 	{
 		
-		BatStuff b=batcomputerRepo.findOneByType(type );
-	    batcomputerRepo.delete(b);
-	    return type +"is removed from the database.";
+		
+	    batcomputerRepo.deleteByName(name);
+	    
+	    return name +"is removed from the Bat-database.";
+	    
 	}
 	
 }
