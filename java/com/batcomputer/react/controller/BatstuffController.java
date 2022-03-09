@@ -35,7 +35,20 @@ public class BatstuffController {
 
 
 	//get all the info
-	
+
+@PutMapping("/batStuff/{id}")
+public ResponseEntity<BatStuff> updateBatStuff(@PathVariable int id, @RequestBody BatStuff batstuff)
+{
+	BatStuff b= batcomputerRepo.findById(id).orElseThrow(() ->  new ResourceNotFoundException("No Batsuff"));
+    b.setName(batstuff.getName());
+    b.setType(batstuff.getType());
+    b.setAbout(batstuff.getAbout());
+    b.setFirstapp(batstuff.getFirstapp());
+    b.setImage(batstuff.getImage());
+     BatStuff updateBatStuff =batcomputerRepo.save(b);
+    return ResponseEntity.ok(updateBatStuff);
+}
+
 	@GetMapping("/allbatstuff")
 	public List<BatStuff> getAll()
 	{
@@ -53,19 +66,24 @@ public class BatstuffController {
 	
 	
 	@GetMapping("/batstuff/{type}")
-	public ResponseEntity<BatStuff> getBatstuffById(@PathVariable String type)
+	public ResponseEntity<BatStuff> getBatstuffByType(@PathVariable String type)
 	{
 		BatStuff  b= batcomputerRepo.findById(type).orElseThrow(() ->  new ResourceNotFoundException("Holy missing Data Batman!"));
 		return ResponseEntity.ok(b);                 
 	}
+	@GetMapping("/batstuff/id/{id}")
+	public BatStuff getBatStuffById(@PathVariable Integer id)
+	 {
+	
+	 BatStuff batstuff=batcomputerRepo.findById(id).orElseThrow();
+	 return batstuff;
+	 }
 	
 	@GetMapping("/batstuff/{name}")
 	public List<BatStuff> getBatStuffByName(@PathVariable String name)
 	{
-	
 		
-		List <BatStuff> batstuff=batcomputerRepo.findByName(name);
-		if(batstuff.isEmpty())
+		
 		{
 			System.out.println(new ResourceNotFoundException("We havent fought"+ name +" yet Batman!"));
 		}

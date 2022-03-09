@@ -10,7 +10,7 @@ import com.batcomputer.react.model.BatStuff;
 
 
 @Repository
-public interface BatcomputerRepository extends JpaRepository<BatStuff, String> {
+public interface BatcomputerRepository extends JpaRepository<BatStuff, Integer> {
 		List<BatStuff>findByName(String name);
 		
 		BatStuff findOneByType(String type);
