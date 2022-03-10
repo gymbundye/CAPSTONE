@@ -1,0 +1,114 @@
+.footer{
+    border: solid red;
+    background-color: black;
+    color: red;
+    border-radius: 10px;
+    margin: 10px;
+    
+    text-shadow: 1px 1px 1px white;
+    
+    
+}
+.header{
+    border: solid red;
+    background-color: black;
+    color: red;
+    border-radius: 10px;
+    margin: 10px;
+    text-shadow: 1px 1px 1px white;
+    padding: 10px;
+}
+
+.Nav{
+    border: solid;
+    display: flex;
+    list-style: none;
+    text-decoration-style: none; 
+    margin: 10px;
+    font-size: small;
+    border-radius: 10px;
+    color: red;
+    background-color: black;
+    justify-content: space-around;
+    padding: 10px;
+    
+   
+
+}
+.list{
+    border: solid;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: black;
+    color: red;
+    box-shadow: 1px 1px 1px;
+    text-shadow: 1px 1px 1px white;
+    
+    }
+.gotham{
+    
+    width: 75%;
+    margin: 10px;
+    padding: 10px;
+}
+body{
+    background-image: url(/public/images/noises.jpg);
+}
+.form{
+    
+    margin: 10px;   
+}
+.table{
+    
+    
+    
+}
+td{
+    
+   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    
+}
+.imgDiv{
+    width: 200px;
+    border: solid;
+    border-radius: 10px;
+}
+.tableHead{
+    padding: 10px;
+    text-decoration: underline;
+    border: solid;
+    
+}
+     
+.deleteImg{
+    width: 75%;
+    border: solid red;
+    margin: 10px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    
+
+}
+.imgLink{
+    width: 100px;
+}
+.btn{
+    color: red;
+    background-color: black;
+    text-shadow: 1px 1px white;
+    font-style: oblique;
+    border: solid;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
+
+}
+label{
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
